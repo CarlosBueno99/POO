@@ -7,12 +7,12 @@ corcaneta
 tipopontacaneta
 numeromateriascaderno
 marcacaderno
+********************************************************************
+use poodb;
 
-use poodt;
 
 
-
-create table tbprodutos(
+create table tbpcaneta(
 
 id int primary key not null auto_increment,
 
@@ -20,47 +20,118 @@ nome varchar(30),
 
 preco varchar(30),
 
-quantidade int(30),
-
-corpapel varchar(30),
-
-tamanhopapel varchar(30),
-
 corcaneta varchar(30),
+tipodeponta varchar(30))
 
-tipopontacaneta varchar(30),
+;
 
-numerosmateriascaderno int(30),
+insert into tbpcanetas (nome, preco, corcaneta, tipodeponta)
+value ('bic azul', '35.50','azul','fina');
 
-marcacaderno varchar(30),
+
+
+select * from tbpcaneta;
+*******************************************************************
+use poodb;
+
+
+
+create table tbppapel(
+
+id int primary key not null auto_increment,
 
 nome varchar(30),
 
+preco varchar(30),
+
+corpapel varchar(30),
+tamanhopapel varchar(30))
+
+;
+
+insert into tbppapel (nome, preco, corpapel, tamanhopapel)
+value ('papel sulfite', '0.2','branco','A4');
 
 
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('zomo watermelon  mint', 'essencia', 'zomo', '1', '10,00', '6,50', '40');
 
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('zomo guava', 'essencia', 'zomo', '2', '10,00', '6,50', '20');
-
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('adalya swiss bombom', 'essencia', 'adalya', '3', '16,00', '9,50', '10');
-
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('vgod mint', 'essencia', 'vgod', '4', '12,00', '8,00', '30');
-
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('tangiers new lemon lime', 'essencia', 'tangiers', '5', '150,00', '95,00', '1');
-
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('regal queen', 'stem', 'regal hookah', '6', '1100,00', '850,00', '2');
-
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('boho yunan rubi', 'vaso', 'egermann', '7', '510,00', '350,00', '3');
-
-insert into tbprodutos (nome, tipo, marca, sku, precovenda, precocompra, quantidade)
-value ('imperial hk', 'prato', 'hookah king', '8', '150,00', '100,00', '5');
+select * from tbppapel;
+************************************************************
+use poodb;
 
 
-select * from tbprodutos;
+
+create table tbpcaderno(
+
+id int primary key not null auto_increment,
+
+nome varchar(30),
+
+preco varchar(30),
+
+numerodematerias varchar(30),
+marcacaderno varchar(30))
+
+;
+
+insert into tbpcaderno (nome, preco, numerodematerias, marcacaderno)
+value ('caderno skate', '32.50','10','tilibra');
+
+
+
+select * from tbpcaderno;
+*************************************************************
+getNome
+getPreco
+getCorPapel
+getTamanhoDoPapel
+
+
+
+
+getNome
+getPreco
+getCorCaneta
+getTipoDePonta
+
+
+
+
+getNome
+getPreco
+getNumeroDeMaterias
+getMarcaCaderno
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
