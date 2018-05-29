@@ -10,5 +10,21 @@ package br.com.carlos.Model;
  * @author carlo
  */
 public class Papel extends Produto {
+    private String corPapel;
+    private String tamanhoDoPapel;
     
+    
+    public void setCorPapel(String cor){
+        this.corPapel = cor;
+    }
+    public String getCorPapel(){
+        return this.corPapel;
+    }
+    
+    public void setTamanhoDoPapel(String tamanhoDoPapel){
+        this.tamanhoDoPapel = tamanhoDoPapel;
+    }
+    public String getTamanhoDoPapel (){
+        return this.tamanhoDoPapel;
+    }
 }

@@ -10,5 +10,21 @@ package br.com.carlos.Model;
  * @author carlo
  */
 public class Caneta extends Produto{
+    private String corCaneta;
+    private String tipoDePonta;
+    
+    public void setCorCaneta(String cor){
+        this.corCaneta = cor;
+    }
+    public String getCorCaneta(){
+        return this.corCaneta;
+    }
+    
+    public void setTipoDePonta(String tipoDePonta){
+        this.tipoDePonta = tipoDePonta;
+    }
+    public String getTipoDePonta(){
+        return this.tipoDePonta;
+    }
     
 }

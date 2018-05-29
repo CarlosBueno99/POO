@@ -5,8 +5,8 @@
  */
 package br.com.carlos.DAO;
 
+import br.com.carlos.Model.Papel;
 import br.com.carlos.Connection.ConnectionFactory;
-import br.com.carlos.Model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -14,24 +14,23 @@ import java.sql.SQLException;
 
 /**
  *
- * @author carlos
+ * @author carlo
  */
-public class ProdutoDAO {
+public class PapelDAO {
+    
+     private Connection conexao;
 
-    private Connection conexao;
-
-    public String inserir(Produto produto) {
+     public String inserir(Papel produto) {
         String message = "";
         try {
-            String sql = "INSERT INTO tbprodutos(nome, preco, corpapel, tamanhopapel, corcaneta, tipopontacaneta, numerodematerias, marcacaderno) VALUES(?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tbprodutos(nome, preco, corpapel, tamanhopapel) VALUES(?,?,?,?)";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
             stmt.setString(2, produto.getPreco());
             stmt.setString(3, produto.getCorPapel());
-            stmt.setString(4, produto.getSku());
-            stmt.setString(5, produto.getPrecovenda());
-            stmt.setString(6, produto.getPrecocompra());
+            stmt.setString(4, produto.getTamanhoDoPapel());
+ 
             stmt.execute();
             stmt.close();
             message = "Produto " + produto.getNome() + " criado com sucesso";
@@ -41,18 +40,17 @@ public class ProdutoDAO {
         System.out.println(message);
         return message;
     }
-
-    public void alterar(Produto produto) {
+      public void alterar(Papel produto) {
         try {
-            String sql = "UPDATE tbprodutos SET nome= ?, tipo= ?, marca= ?, precovenda= ?, precocompra=? WHERE tbprodutos.sku = ?";
+            String sql = "UPDATE tbprodutos SET preco= ?, corpapel= ?, tamanhopapel= ?, precocompra=? WHERE tbprodutos.nome = ?";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
-            stmt.setString(2, produto.getTipo());
-            stmt.setString(3, produto.getMarca());
-            stmt.setString(4, produto.getPrecovenda());
-            stmt.setString(5, produto.getPrecocompra());
-            stmt.setString(6, produto.getSku());
+            stmt.setString(2, produto.getPreco());
+            stmt.setString(3, produto.getCorPapel());
+            stmt.setString(4, produto.getTamanhoDoPapel());
+            
+            
             stmt.execute();
             stmt.close();
             System.out.println("Produto " + produto.getNome() + " alterado com sucesso");
@@ -61,38 +59,38 @@ public class ProdutoDAO {
         }
     }
 
-    public Produto pesquisar(String pesquisa) {
+    public Papel pesquisar(String pesquisa) {
 
-        Produto produto = new Produto();
+        Papel produto = new Papel();
 
         try {
             conexao = ConnectionFactory.getConnection();
             java.sql.Statement stmt = conexao.createStatement();
 
-            String sql = "SELECT * FROM tbprodutos where sku = '" + pesquisa + "'";
+            String sql = "SELECT * FROM tbprodutos where nome = '" + pesquisa + "'";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 produto.setNome(rs.getString("nome"));
-                produto.setSku(rs.getString("sku"));
-                produto.setTipo(rs.getString("tipo"));
-                produto.setMarca(rs.getString("marca"));
-                produto.setPrecocompra(rs.getString("precocompra"));
-                produto.setPrecovenda(rs.getString("precovenda"));
-                System.out.println("TESTE 4 " + sql);
+                produto.setPreco(rs.getString("preco"));
+                produto.setCorPapel(rs.getString("corpapel"));
+                produto.setTamanhoDoPapel(rs.getString("tamanhopapel"));
+                
+                
+                System.out.println("TESTE 4 "+ sql);
 
             }
             rs.close();
             stmt.close();
             return produto;
-
+            
         } catch (SQLException e) {
-            return null;
+            return null; 
         }
-
+        
     }
 
     public void consulta(String pesquisa) {
-        Produto produto = new Produto();
+        Papel produto = new Papel();
         String message = "";
         try {
             conexao = ConnectionFactory.getConnection();
@@ -101,11 +99,12 @@ public class ProdutoDAO {
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 produto.setNome(rs.getString("nome"));
-                produto.setTipo(rs.getString("tipo"));
-                produto.setMarca(rs.getString("marca"));
-                produto.setSku(rs.getString("sku"));
-                produto.setPrecocompra(rs.getString("precocompra"));
-                produto.setPrecovenda(rs.getString("precovenda"));
+                produto.setPreco(rs.getString("preco"));
+                produto.setCorPapel(rs.getString("corpapel"));
+                produto.setTamanhoDoPapel(rs.getString("tamanhopapel"));
+                
+                
+                
             }
             rs.close();
             stmt.close();
@@ -115,19 +114,22 @@ public class ProdutoDAO {
         }
     }
 
-    public void deletar(Produto produto) {
+    public void deletar(Papel produto) {
         String message = "";
         try {
-            String sql = "DELETE FROM tbprodutos WHERE sku = ?";
+            String sql = "DELETE FROM tbprodutos WHERE nome = ?";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
-            stmt.setString(1, produto.getSku());
+            stmt.setString(1, produto.getNome());
             stmt.execute();
             stmt.close();
-            System.out.println("TESTE 5 " + produto.getSku());
+            System.out.println("TESTE 5 " + produto.getNome());
             System.out.println("Produto " + produto.getNome() + " excluído com sucesso");
         } catch (SQLException e) {
             System.out.println("Produto " + produto.getNome() + "não foi excluído com sucesso" + e.getMessage());
         }
     }
 }
+    
+    
+

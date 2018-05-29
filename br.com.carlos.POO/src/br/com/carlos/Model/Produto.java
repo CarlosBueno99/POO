@@ -9,11 +9,10 @@ package br.com.carlos.Model;
  *
  * @author carlo
  */
-public class Produto {
+public class Produto {  
     
-     private String nome;
-    private double preco;
-    private int quantidade;
+    private String nome;
+    private String preco;
     
     public void setNome(String nome){
         this.nome = nome; 
@@ -21,17 +20,12 @@ public class Produto {
     public String getNome (){
         return nome;
     }
-    public void setPreco(double preco){
+    public void setPreco(String preco){
         this.preco = preco;
     }
-    public double getPreco(){
+    public String getPreco(){
         return preco;
     }
-    public void setQuantidade(int quantidade){
-        this.quantidade = quantidade;
-    }
-    public int getQuantidade(){
-        return quantidade;
-    }
+
 }
 
