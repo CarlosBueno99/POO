@@ -25,7 +25,7 @@ tipodeponta varchar(30))
 
 ;
 
-insert into tbpcanetas (nome, preco, corcaneta, tipodeponta)
+insert into tbpcaneta (nome, preco, corcaneta, tipodeponta)
 value ('bic azul', '35.50','azul','fina');
 
 

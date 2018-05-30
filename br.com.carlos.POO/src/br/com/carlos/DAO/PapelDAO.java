@@ -23,7 +23,7 @@ public class PapelDAO {
      public String inserir(Papel produto) {
         String message = "";
         try {
-            String sql = "INSERT INTO tbprodutos(nome, preco, corpapel, tamanhopapel) VALUES(?,?,?,?)";
+            String sql = "INSERT INTO tbppapel(nome, preco, corpapel, tamanhopapel) VALUES(?,?,?,?)";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
@@ -42,7 +42,7 @@ public class PapelDAO {
     }
       public void alterar(Papel produto) {
         try {
-            String sql = "UPDATE tbprodutos SET preco= ?, corpapel= ?, tamanhopapel= ?, precocompra=? WHERE tbprodutos.nome = ?";
+            String sql = "UPDATE tbppapel SET preco= ?, corpapel= ?, tamanhopapel= ?, precocompra=? WHERE tbppapel.nome = ?";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
@@ -67,7 +67,7 @@ public class PapelDAO {
             conexao = ConnectionFactory.getConnection();
             java.sql.Statement stmt = conexao.createStatement();
 
-            String sql = "SELECT * FROM tbprodutos where nome = '" + pesquisa + "'";
+            String sql = "SELECT * FROM tbppapel where nome = '" + pesquisa + "'";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 produto.setNome(rs.getString("nome"));
@@ -95,7 +95,7 @@ public class PapelDAO {
         try {
             conexao = ConnectionFactory.getConnection();
             java.sql.Statement stmt = conexao.createStatement();
-            String sql = "SELECT * FROM tbprodutos";
+            String sql = "SELECT * FROM tbppapel";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 produto.setNome(rs.getString("nome"));
@@ -117,7 +117,7 @@ public class PapelDAO {
     public void deletar(Papel produto) {
         String message = "";
         try {
-            String sql = "DELETE FROM tbprodutos WHERE nome = ?";
+            String sql = "DELETE FROM tbppapel WHERE nome = ?";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());

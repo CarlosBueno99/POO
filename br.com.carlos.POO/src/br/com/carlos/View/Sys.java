@@ -19,10 +19,14 @@ import br.com.carlos.Model.Caneta;
  */
 public class Sys {
     public static void main(String[] args) {
-       Menu();
+       boolean parar = true;
+        do {
+        parar = Menu(parar);
+        
+       }while(parar);
        
     }
-    public static void Menu (){
+    public static boolean Menu (boolean parar){
         
         System.out.println("****Bem Vindo ao Plug and Pay O sistema que foi feito para facilitar sua vida****");
         System.out.println("/n/n/n");
@@ -40,7 +44,13 @@ public class Sys {
             case 2:
                 subMenuProdutos();
                 break;
+            case 3:
+                parar = false;
+                break;
+            default:
+                System.out.println("Essa não é uma opção válida!");
         }
+        return parar;
     }
 
     private static void subMenuProdutos() {
@@ -141,13 +151,14 @@ public class Sys {
         
         switch(escolha){
             case 1:
-                System.out.println("defina o nome, preco, cor da caneta, tipo de ponta da caneta separado por <enter>");
+                System.out.printf("defina o nome, preco, cor da caneta, tipo de ponta da caneta separado por <enter>/n");
                 caneta.setNome(console.nextLine());
                 caneta.setPreco(console.nextLine());
                 caneta.setCorCaneta(console.nextLine());
                 caneta.setTipoDePonta(console.nextLine());
                 
                 String msg = dao.inserir(caneta);
+                
                 break;
             case 2:
                 System.out.println("Qual o nome do produto que quer alterar?");
@@ -224,6 +235,7 @@ public class Sys {
                 System.out.println("Qual o nome do produto que quer excluir?");
                Caderno exclusao = new Caderno();
                 exclusao.setNome(console.nextLine());
+                dao.deletar(exclusao);
                 //
                 break;
         }

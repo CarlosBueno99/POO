@@ -22,7 +22,7 @@ private Connection conexao;
      public String inserir(Caderno produto) {
         String message = "";
         try {
-            String sql = "INSERT INTO tbprodutos(nome, preco, numerodematerias, marcacaderno) VALUES(?,?,?,?)";
+            String sql = "INSERT INTO tbpcaderno(nome, preco, numerodematerias, marcacaderno) VALUES(?,?,?,?)";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
@@ -42,7 +42,7 @@ private Connection conexao;
     }
       public void alterar(Caderno produto) {
         try {
-            String sql = "UPDATE tbprodutos SET nome= ?, preco= ?, numerodematerias= ?, marcacaderno= ? WHERE tbprodutos.nome = ?";
+            String sql = "UPDATE tbpcaderno SET nome= ?, preco= ?, numerodematerias= ?, marcacaderno= ? WHERE tbpcaderno.nome = ?";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
@@ -67,7 +67,7 @@ private Connection conexao;
             conexao = ConnectionFactory.getConnection();
             java.sql.Statement stmt = conexao.createStatement();
 
-            String sql = "SELECT * FROM tbprodutos where nome = '" + pesquisa + "'";
+            String sql = "SELECT * FROM tbpcaderno where nome = '" + pesquisa + "'";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 produto.setNome(rs.getString("nome"));
@@ -95,7 +95,7 @@ private Connection conexao;
         try {
             conexao = ConnectionFactory.getConnection();
             java.sql.Statement stmt = conexao.createStatement();
-            String sql = "SELECT * FROM tbprodutos";
+            String sql = "SELECT * FROM tbpcaderno";
             ResultSet rs = stmt.executeQuery(sql);
             while (rs.next()) {
                 produto.setNome(rs.getString("nome"));
@@ -116,7 +116,7 @@ private Connection conexao;
     public void deletar(Caderno produto) {
         String message = "";
         try {
-            String sql = "DELETE FROM tbprodutos WHERE nome = ?";
+            String sql = "DELETE FROM tbpcaderno WHERE nome = ?";
             conexao = ConnectionFactory.getConnection();
             PreparedStatement stmt = conexao.prepareStatement(sql);
             stmt.setString(1, produto.getNome());
